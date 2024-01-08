@@ -1,10 +1,18 @@
 import React from 'react'
-// rgb(243 244 246);
-const Home = () => {
+
+const Category = () => {
   return (
-    <div className=' bg-home-grey h-screen border-t-4 mt-8 '>
-    <div className='w-4/5 m-auto  '></div>
-      <div className=' sm:flex-row flex  flex-col px-5   sm:px-0 justify-center mt-6 gap-6 '>
+    <div className='h-screen border-t-4 mt-8 '>
+
+        <div className='w-4/5 m-auto  '>
+            <div className='flex justify-between mt-6'> 
+                <button className=' hover:bg-white hover:text-black hover:border bg-gray-500 text-white font-semibold px-3 py-2 rounded'>All</button>
+                <button className=' hover:bg-white hover:text-black hover:border bg-gray-500 text-white font-semibold px-3 py-2 rounded'>T-Shirt</button>
+                <button className=' hover:bg-white hover:text-black hover:border bg-gray-500 text-white font-semibold px-3 py-2 rounded'>Shirt</button>
+                <button className=' hover:bg-white hover:text-black hover:border bg-gray-500 text-white font-semibold px-3 py-2 rounded'>Jeans</button>
+            </div>
+
+            <div className='flex justify-center mt-6 gap-6 flex-col sm:flex-row px-5 '>
         <div className='bg-white p-4 '>
             <div className=' '>
           <img className='w-full h-64' src="https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/455359/item/goods_75_455359.jpg?width=750" alt="images" />
@@ -33,8 +41,11 @@ const Home = () => {
             <button className=' bg-zinc-600 text-white p-2 rounded font-bold '>ADD TO CART</button>
         </div>
       </div>
+
+        </div>
+
     </div>
   )
 }
 
-export default Home
+export default Category
