@@ -1,31 +1,60 @@
 import { ActionTypes } from "../Constant/actions-type";
 
-const initialState = {
-    products:[],
-    cartitem:[]
-}
 
-export const productReducer = (state=initialState,{type,payload})=>{
+
+export const productReducer = (state = { cart: [], },{type,payload})=>{
     switch (type) {
         case ActionTypes.ADD_TO_CART:
             const item = payload
-            const isItemExits = state.cartitem.find((el)=>el.products === item.products)
-        if(isItemExits){
+           
+       
+            const isItemExits = state.cart.findIndex((el)=>el.id === item.id)
+           
+        if(isItemExits >= 0){
+   state.cart[isItemExits].qty += 1
             return{
                 ...state,
-                cartitem:state.cartitem.map((el)=>{
-                    el.products === item.products ? item : el
-                })
+                cart:[...state.cart]
             }
         }else{
+                const newel = {...item}
             return{
                 ...state,
-                cartitem:[...state.cartitem,item]
+                cart:[...state.cart,newel],
+                
             }
         }
-          
-    
+     
+      case ActionTypes.DECREMENT:
+        const items = payload
+        
+        const ItemExits = state.cart.findIndex((el)=>el.id===items.id)
+  
+        if(state.cart[ItemExits].qty > 1){
+         state.cart[ItemExits].qty -=1
+
+         return{
+             ...state,
+             cart:[...state.cart]
+            }
+        } else if(state.cart[ItemExits].qty === 1){
+                const data = state.cart.filter((el)=>el.id !== items.id)
+
+                return{
+                    ...state,
+                    cart:data
+                }
+    }
+    case ActionTypes.REMOVE_PRODUCT:
+        const itemsqty = payload
+        console.log(itemsqty)
+        const removeitem = state.cart.filter((el)=>el.id !== itemsqty.id)
+        return {
+            ...state,
+            cart:removeitem
+        }
         default:
             return state;
     }
 }
+
