@@ -50,7 +50,7 @@ const totalqty = cart.reduce((initial,current)=>   initial + current.qty , vale)
 {
 
 cart.map((el,index)=>{
-
+console.log(el)
         return(
 <div key={index} className="flex" >
 

@@ -1,11 +1,11 @@
-import React, {  } from "react";
-import {  useDispatch , useSelector} from "react-redux";
-import { AddToCart } from "../../redux/Actions/ProductAction";
+import React, { useEffect } from "react";
+import {  useDispatch,useSelector } from "react-redux";
+import { AddToCart, SetProducts } from "../../redux/Actions/ProductAction";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import axios from "axios";
 
 const Home = () => {
- const {cart} = useSelector((state)=>state.products)
 
   const product = [
     {
@@ -33,11 +33,24 @@ const Home = () => {
       category:"shirt"
     },
   ];
-
-
+  
+  const dispatch = useDispatch();
+  const getproducts = async()=>{
+  
+    const {data} = await  axios.get("http://localhost:8000/api/v1/getallproduct");
+    
+    dispatch( SetProducts(data.product))
+  }
+  getproducts()
+  const {allproduct} = useSelector((state)=>state.products)
+  
   const notify = () => toast("Item Adden in Cart!");
 
-  const dispatch = useDispatch();
+
+    
+  const config = { header: { "Content-Type": "application/json" } }
+
+  
 
 
   const Addproduct = (productID) => {
@@ -49,10 +62,9 @@ const Home = () => {
     <div className=" bg-home-grey h-screen border-t-4 mt-8 ">
       <div className="w-4/5 m-auto  "></div>
       <div className=" sm:flex-row flex  flex-col px-5   sm:px-0 justify-center mt-6 gap-6 ">
-        {product.map((el, index) => {
-       
+        {allproduct.map((el, index) => {
           return (
-            <div key={index} className="bg-white p-4 ">
+            <div key={index} className="bg-white p-4 shadow-lg rounded-md ">
               <div className=" ">
                 <img
                   className="w-full h-64"

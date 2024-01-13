@@ -3,5 +3,6 @@ export const ActionTypes = {
     REMOVE_PRODUCT:"REMOVE_PRODUCT",
     GET_TOTAL:"GET_TOTAL",
     DECREMENT:"DECREMENT",
+    SET_PRODUCTS  : "SET_PRODUCTS"
 
 }
