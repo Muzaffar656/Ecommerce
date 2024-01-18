@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from "react";
+import React  from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { AddToCart, DecreaseQty, RemovePro } from "../../redux/Actions/ProductAction";
 
@@ -9,7 +9,7 @@ const Cart = () => {
 //   description:"Smooth 'AIRism' with the look of cotton.",
 //   qty:"1"
 //  }
-const [price,setPrice] = useState("")
+
 const dispatch = useDispatch()
 
 const {cart} = useSelector((state)=>state.products)

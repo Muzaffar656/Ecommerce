@@ -8,7 +8,6 @@ import MenuItem from '@mui/material/MenuItem';
 const AddProducts = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  // const {allproduct} = useSelector((state)=>state.products)
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");

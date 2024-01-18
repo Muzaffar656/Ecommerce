@@ -25,6 +25,7 @@ const {allproduct} = useSelector((state)=>state.products)
       <div className="w-4/5 m-auto  "></div>
       <div className=" sm:flex-row flex  flex-col px-5   sm:px-0 justify-center mt-6 gap-6 ">
         {allproduct.map((el, index) => {
+       
           return (
             <div key={index} className="bg-white p-4 shadow-lg rounded-md ">
               <div className=" ">

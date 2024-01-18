@@ -6,7 +6,7 @@ export const productReducer = (state = { cart: [],allproduct:[] },{type,payload}
     switch (type) {
         case ActionTypes.ADD_TO_CART:
             const item = payload
-         
+  
        
             const isItemExits = state.cart.findIndex((el)=>el.id === item.id)
            
@@ -59,11 +59,15 @@ export const productReducer = (state = { cart: [],allproduct:[] },{type,payload}
     
     
         case ActionTypes.SET_PRODUCTS:
-            const allProduct = payload
-        return{
-            ...state,
-            allproduct:[allProduct]
-        }
+            const itemss = payload
+       
+                const newel = {...itemss}
+            return{
+                ...state,
+                allproduct:[...state.allproduct,newel],
+                
+            }
+        
         default:
             return state;
     }
