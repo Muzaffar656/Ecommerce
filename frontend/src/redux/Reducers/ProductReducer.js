@@ -6,7 +6,7 @@ export const productReducer = (state = { cart: [],allproduct:[] },{type,payload}
     switch (type) {
         case ActionTypes.ADD_TO_CART:
             const item = payload
-           console.log(item)
+         
        
             const isItemExits = state.cart.findIndex((el)=>el.id === item.id)
            
@@ -44,8 +44,11 @@ export const productReducer = (state = { cart: [],allproduct:[] },{type,payload}
                     ...state,
                     cart:data
                 }
-    }
-    case ActionTypes.REMOVE_PRODUCT:
+            }
+            break
+   
+   
+     case ActionTypes.REMOVE_PRODUCT:
         const itemsqty = payload
      
         const removeitem = state.cart.filter((el)=>el.id !== itemsqty.id)
@@ -53,13 +56,14 @@ export const productReducer = (state = { cart: [],allproduct:[] },{type,payload}
             ...state,
             cart:removeitem
         }
-    case ActionTypes.SET_PRODUCTS:
-     
+    
+    
+        case ActionTypes.SET_PRODUCTS:
+            const allProduct = payload
         return{
             ...state,
-            allproduct:[payload]
+            allproduct:[allProduct]
         }
-        
         default:
             return state;
     }

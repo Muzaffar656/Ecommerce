@@ -1,59 +1,21 @@
-import React, { useEffect } from "react";
+import React from "react";
 import {  useDispatch,useSelector } from "react-redux";
-import { AddToCart, SetProducts } from "../../redux/Actions/ProductAction";
+import { AddToCart } from "../../redux/Actions/ProductAction";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import axios from "axios";
+// import axios from "axios";
 
 const Home = () => {
+const {allproduct} = useSelector((state)=>state.products)
 
-  const product = [
-    {
-      id: "dsjbfdjksfgbi",
-      img: "https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/455359/item/goods_75_455359.jpg?width=750",
-      name: "T-Shirt",
-      price: 1490,
-      description: "Smooth 'AIRism' with the look of cotton.",
-      category:"tshirt"
-    },
-    {
-      id: "uyepioednm",
-      img: "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcQXJLkyIo-mRwH2EFgdkDY_1XlVY6C6QJi4y_LLJVyW8rnAl4YuxDriCNW3-damQJa0fvKkK93IQF6UG6sS_hxuaXRNOgkNO-YtecZ5nOX3AgL7e-wH3F1Wfw",
-      name: "Jeans",
-      price: 1399,
-      description: "LEVI'S 512 Slim Tapered Fit Men Jeans",
-      category:"jeans"
-    },
-    {
-      id: "ijsdhiuic",
-      img: "https://levi.in/cdn/shop/files/329080243_01_Style_Shot_24d15e34-407b-42ba-9cea-c2531cc737df.jpg?v=1695736392",
-      name: "Shirt",
-      price: 1290,
-      description: "MEN'S CHECKERED SLIM FIT SHIRT.",
-      category:"shirt"
-    },
-  ];
+
   
   const dispatch = useDispatch();
-  const getproducts = async()=>{
-  
-    const {data} = await  axios.get("http://localhost:8000/api/v1/getallproduct");
-    
-    dispatch( SetProducts(data.product))
-  }
-  getproducts()
-  const {allproduct} = useSelector((state)=>state.products)
-  
+
   const notify = () => toast("Item Adden in Cart!");
 
-
-    
-  const config = { header: { "Content-Type": "application/json" } }
-
-  
-
-
   const Addproduct = (productID) => {
+
     dispatch(AddToCart(productID));
   };
 

@@ -20,7 +20,7 @@ const increaseqty = (product,qty)=>{
 }
 
 const decreaseqty = (product,qty)=>{
- 
+
   const newqty = qty - 1
   
   dispatch(DecreaseQty(product,newqty))
@@ -50,7 +50,7 @@ const totalqty = cart.reduce((initial,current)=>   initial + current.qty , vale)
 {
 
 cart.map((el,index)=>{
-console.log(el)
+
         return(
 <div key={index} className="flex" >
 
@@ -90,6 +90,7 @@ console.log(el)
     +
   </span>
 <button onClick={()=>{
+
   dispatch(RemovePro(el))
 }} className="border px-4 py-2 rounded font-medium">
   Remove

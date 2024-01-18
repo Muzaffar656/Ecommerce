@@ -3,25 +3,22 @@ import { ActionTypes } from "../Constant/actions-type"
 
 
 export const SetProducts = (product)=>{
-   
+
    return{
       type:ActionTypes.SET_PRODUCTS,
-      payload: product.map((el)=>{
-            return{
-               id:el._id,
-               name:el.name,
-               description:el.description,
-               price:el.price,
-               category:el.category
-            }
-
-        })
+      payload:{
+         id:product._id,
+         name:product.name,
+         description:product.description,
+         price:product.price,
+         category:product.category,
+         img:product.image.url
+      }
       
    }
 }
 
 export const AddToCart = (product,qty=1)=>{
-console.log(product)
    return{
     type:ActionTypes.ADD_TO_CART,
     payload:{
@@ -29,13 +26,14 @@ console.log(product)
          name:product.name,
          description:product.description, 
          price:product.price,
-         img:product.image.url,
+         img:product.img,
          qty
           }
    }
 }
  
 export const DecreaseQty = (product,qty=1)=>{
+
    return {
       type:ActionTypes.DECREMENT,
       payload:{
@@ -43,7 +41,7 @@ export const DecreaseQty = (product,qty=1)=>{
          name:product.name,
          description:product.description,
          price:product.price,
-         img:product.image.url,
+         img:product.img,
          qty
       }
    }
@@ -59,7 +57,7 @@ export const RemovePro = (product)=>{
          name:product.name,
          description:product.description,
          price:product.price,
-         img:product.image.url,
+         img:product.img,
       }
    }
 }

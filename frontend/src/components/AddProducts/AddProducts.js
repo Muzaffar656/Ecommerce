@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {useDispatch,useSelector} from 'react-redux'
+import { useDispatch } from 'react-redux'
 import axios from "axios";
 import { SetProducts } from "../../redux/Actions/ProductAction";
 import { useNavigate } from "react-router-dom";
@@ -8,7 +8,7 @@ import MenuItem from '@mui/material/MenuItem';
 const AddProducts = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const {allproduct} = useSelector((state)=>state.products)
+  // const {allproduct} = useSelector((state)=>state.products)
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
@@ -25,13 +25,13 @@ const AddProducts = () => {
     formData.append("category", category);
     formData.append("image", image);
 
-    
+
     const config = { header: { "Content-Type": "application/json" } }
 
-    const {data} = await axios.post("http://localhost:8000/api/v1/createproduct", formData,config);
+    const { data } = await axios.post("http://localhost:8000/api/v1/createproduct", formData, config);
     dispatch(SetProducts(data.product))
     navigate('/')
- 
+
   };
 
   return (
@@ -40,7 +40,6 @@ const AddProducts = () => {
         onSubmit={handelsubmit}
         className="flex flex-col bg-white  text-xl font-medium my-10 px-10 py-5 gap-4 rounded-md  shadow-md"
       >
-       
 
         <label className=" text-base">Product Name</label>
         <input
@@ -55,7 +54,7 @@ const AddProducts = () => {
         <label className=" text-base">Product Description</label>
         <input
           // name="description"
-          onChange={(e) =>setDescription(e.target.value)}
+          onChange={(e) => setDescription(e.target.value)}
           type="text"
           className=" text-gray-500 text-lg border px-4 py-2 rounded"
           placeholder="Product Description"
@@ -73,53 +72,37 @@ const AddProducts = () => {
           placeholder="Product Price"
         />
 
-
-<TextField
-                            label="Category"
-                            select
-                            fullWidth
-                            variant="outlined"
-                            size="small"
-                            required
-                            value={category}
-                            onChange={(e) => setCategory(e.target.value)}
-                        >
-
-                          <MenuItem value="shirt" >Shirt</MenuItem>
-                          <MenuItem value="jeans" >Jeans</MenuItem>
-                          <MenuItem value="tshirt" >T-Shirt</MenuItem>
-
-                        </TextField>
-
-
-
-
-{/* 
-
-        <select
-          // name="category"
-          required              
+        <TextField
+          label="Category"
+          select
+          fullWidth
+          variant="outlined"
+          size="small"
+          required
+          value={category}
           onChange={(e) => setCategory(e.target.value)}
-          type="text"
         >
-          <option>TShirt</option>
-          <option>Shirt</option>
-          <option>Jeans</option>
-        </select> */}
+
+          <MenuItem value="shirt" >Shirt</MenuItem>
+          <MenuItem value="jeans" >Jeans</MenuItem>
+          <MenuItem value="tshirt" >T-Shirt</MenuItem>
+
+        </TextField>
 
         <label className="text-base">Choose Product Image</label>
         <input
           name="image"
-          onChange={(e) => setImage(e.target.files[0]) }
+          onChange={(e) => setImage(e.target.files[0])}
           type="file"
           required
           className="border px-4 py-2 rounded text-gray-500 text-lg "
           placeholder="Choose File..."
         />
 
-        <button className=" bg-gray-600 text-white px-4 py-2 text-xl rounded ">
+        <button type="submit" className=" bg-gray-600 text-white px-4 py-2 text-xl rounded ">
           Add
         </button>
+
       </form>
     </div>
   );
