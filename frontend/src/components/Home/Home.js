@@ -1,6 +1,6 @@
-import React from "react";
+import React,{useEffect} from "react";
 import {  useDispatch,useSelector } from "react-redux";
-import { AddToCart } from "../../redux/Actions/ProductAction";
+import { AddToCart , getAllproduct} from "../../redux/Actions/ProductAction";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 // import axios from "axios";
@@ -19,7 +19,9 @@ const {allproduct} = useSelector((state)=>state.products)
     dispatch(AddToCart(productID));
   };
 
-
+useEffect(()=>{
+  dispatch(getAllproduct())
+},[dispatch])
   return (
     <div className=" bg-home-grey h-screen border-t-4 mt-8 ">
       <div className="w-4/5 m-auto  "></div>

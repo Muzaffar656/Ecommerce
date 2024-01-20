@@ -1,5 +1,5 @@
 import React,{useState} from 'react'
-import { useSelector } from 'react-redux'
+
 const Category = () => {
   const [products, setProducts] = useState([])
   const product = [

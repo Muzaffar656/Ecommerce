@@ -2,7 +2,7 @@ import { ActionTypes } from "../Constant/actions-type";
 
 
 
-export const productReducer = (state = { cart: [],allproduct:[] },{type,payload})=>{
+export const productReducer = (state = { cart: [],allproduct:[] ,getAll:[]},{type,payload})=>{
     switch (type) {
         case ActionTypes.ADD_TO_CART:
             const item = payload
@@ -68,6 +68,13 @@ export const productReducer = (state = { cart: [],allproduct:[] },{type,payload}
                 
             }
         
+
+        case ActionTypes.GET_ALL_PRODUCT:
+           
+            return{
+                ...state,
+                getAll:[...state.getAll,payload]
+            }
         default:
             return state;
     }

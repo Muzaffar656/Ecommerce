@@ -1,5 +1,5 @@
 import { ActionTypes } from "../Constant/actions-type"
-
+import axios from "axios"
 
 
 export const SetProducts = (product)=>{
@@ -16,6 +16,26 @@ export const SetProducts = (product)=>{
       }
       
    }
+}
+
+export const getAllproduct = ()=>async(dispatch) => {
+const url = "http://localhost:8000/api/v1/getallproduct";
+// const config = { header: { "Content-Type": "application/json" } }
+
+const {data} = await axios.get(url)
+
+dispatch({
+   type:ActionTypes.GET_ALL_PRODUCT,
+   payload:data.product.map((el)=>{
+      return{
+         id:el.id,
+         name:el.name,
+         description:el.description, 
+         price:el.price,
+         img:el.img,
+      }
+   })
+})
 }
 
 export const AddToCart = (product,qty=1)=>{
