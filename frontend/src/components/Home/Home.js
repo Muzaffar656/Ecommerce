@@ -6,7 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 // import axios from "axios";
 
 const Home = () => {
-const {allproduct} = useSelector((state)=>state.products)
+const {getAll} = useSelector((state)=>state.products)
 
 
   
@@ -26,14 +26,15 @@ useEffect(()=>{
     <div className=" bg-home-grey h-screen border-t-4 mt-8 ">
       <div className="w-4/5 m-auto  "></div>
       <div className=" sm:flex-row flex  flex-col px-5   sm:px-0 justify-center mt-6 gap-6 ">
-        {allproduct.map((el, index) => {
+        {getAll.map((el, index) => {
        
           return (
+            
             <div key={index} className="bg-white p-4 shadow-lg rounded-md ">
               <div className=" ">
                 <img
                   className="w-full h-64"
-                  src={el.img}
+                  src={el.image.url}
                   alt="images"
                 />
                 <h2 className=" text-2xl font-bold ">{el.name}</h2>
@@ -53,7 +54,7 @@ useEffect(()=>{
               {"ADD TO CART"}
               </button>
             </div>
-          );
+          );       
         })}
       </div>
 <ToastContainer className=' mt-24' />

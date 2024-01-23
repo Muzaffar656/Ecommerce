@@ -1,6 +1,6 @@
 import React  from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { AddToCart, DecreaseQty, RemovePro } from "../../redux/Actions/ProductAction";
+import { IncreaseQty, DecreaseQty, RemovePro } from "../../redux/Actions/ProductAction";
 
 const Cart = () => {
 //  const product = {
@@ -16,7 +16,7 @@ const {cart} = useSelector((state)=>state.products)
 
 const increaseqty = (product,qty)=>{
   const newqty = qty + 1
-    dispatch(AddToCart(product,newqty))
+    dispatch(IncreaseQty(product,newqty))
 }
 
 const decreaseqty = (product,qty)=>{

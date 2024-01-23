@@ -24,7 +24,37 @@ export const productReducer = (state = { cart: [],allproduct:[] ,getAll:[]},{typ
                 
             }
         }
-     
+     case ActionTypes.INCREASE_QTY:
+
+     const itemexist = state.cart.findIndex((el)=>el.id === payload.id)
+
+         
+     if(itemexist >= 0){
+        state.cart[itemexist].qty += 1
+                 return{
+                     ...state,
+                     cart:[...state.cart]
+                 }
+             }else{
+                     const newel = {...item}
+                 return{
+                     ...state,
+                     cart:[...state.cart,newel],
+                     
+                 }
+             }
+
+
+
+
+
+
+
+
+
+
+
+
       case ActionTypes.DECREMENT:
         const items = payload
         
@@ -58,22 +88,22 @@ export const productReducer = (state = { cart: [],allproduct:[] ,getAll:[]},{typ
         }
     
     
-        case ActionTypes.SET_PRODUCTS:
-            const itemss = payload
+        // case ActionTypes.SET_PRODUCTS:
+        //     const itemss = payload
        
-                const newel = {...itemss}
-            return{
-                ...state,
-                allproduct:[...state.allproduct,newel],
+        //         const newel = {...itemss}
+        //     return{
+        //         ...state,
+        //         allproduct:[...state.allproduct,newel],
                 
-            }
+        //     }
         
 
         case ActionTypes.GET_ALL_PRODUCT:
            
             return{
                 ...state,
-                getAll:[...state.getAll,payload]
+                getAll:payload
             }
         default:
             return state;

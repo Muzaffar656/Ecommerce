@@ -1,12 +1,9 @@
 import React, { useState } from "react";
-import { useDispatch } from 'react-redux'
 import axios from "axios";
-import { SetProducts } from "../../redux/Actions/ProductAction";
 import { useNavigate } from "react-router-dom";
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
 const AddProducts = () => {
-  const dispatch = useDispatch()
   const navigate = useNavigate()
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
@@ -27,8 +24,7 @@ const AddProducts = () => {
 
     const config = { header: { "Content-Type": "application/json" } }
 
-    const { data } = await axios.post("http://localhost:8000/api/v1/createproduct", formData, config);
-    dispatch(SetProducts(data.product))
+    const  data  = await axios.post("http://localhost:8000/api/v1/createproduct", formData, config);
     navigate('/')
 
   };
