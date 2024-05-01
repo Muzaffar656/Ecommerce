@@ -34,3 +34,13 @@ export const GetallProduct = catchAsyncError(async (req,res,next)=>{
         product
     })
 })
+
+
+export const singleProduct  = catchAsyncError(async (req,res,next)=>{
+    const id = req.params.id
+    const product = await Product.findById(id)
+    res.json({
+        success:true,
+        product
+    })
+})

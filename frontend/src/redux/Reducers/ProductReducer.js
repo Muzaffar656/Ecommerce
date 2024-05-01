@@ -6,21 +6,20 @@ export const productReducer = (state = { cart: [],allproduct:[] ,getAll:[]},{typ
     switch (type) {
         case ActionTypes.ADD_TO_CART:
             const item = payload
-  
+ 
        
-            const isItemExits = state.cart.findIndex((el)=>el.id === item.id)
+            const isItemExits = state.cart.find((el)=>el.product === item.product)
            
-        if(isItemExits >= 0){
-   state.cart[isItemExits].qty += 1
+        if(isItemExits){
             return{
                 ...state,
-                cart:[...state.cart]
+                cart:state.cart.map((i)=>i.product === isItemExits.product ? item : i)
             }
         }else{
-                const newel = {...item}
+            
             return{
                 ...state,
-                cart:[...state.cart,newel],
+                cart:[...state.cart,item],
                 
             }
         }
@@ -46,16 +45,7 @@ export const productReducer = (state = { cart: [],allproduct:[] ,getAll:[]},{typ
 
 
 
-
-
-
-
-
-
-
-
-
-      case ActionTypes.DECREMENT:
+    //   case ActionTypes.DECREMENT:
         const items = payload
         
         const ItemExits = state.cart.findIndex((el)=>el.id===items.id)
@@ -81,7 +71,7 @@ export const productReducer = (state = { cart: [],allproduct:[] ,getAll:[]},{typ
      case ActionTypes.REMOVE_PRODUCT:
         const itemsqty = payload
      
-        const removeitem = state.cart.filter((el)=>el.id !== itemsqty.id)
+        const removeitem = state.cart.filter((el)=>el.product !== itemsqty.product)
         return {
             ...state,
             cart:removeitem

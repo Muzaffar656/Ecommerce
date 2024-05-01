@@ -1,14 +1,9 @@
 import React  from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { IncreaseQty, DecreaseQty, RemovePro } from "../../redux/Actions/ProductAction";
+import { IncreaseQty, DecreaseQty, RemovePro, AddToCart } from "../../redux/Actions/ProductAction";
 
 const Cart = () => {
-//  const product = {
-//   name:"T-Shirt",
-//   price:"1,490.00",
-//   description:"Smooth 'AIRism' with the look of cotton.",
-//   qty:"1"
-//  }
+
 
 const dispatch = useDispatch()
 
@@ -16,14 +11,16 @@ const {cart} = useSelector((state)=>state.products)
 
 const increaseqty = (product,qty)=>{
   const newqty = qty + 1
-    dispatch(IncreaseQty(product,newqty))
+    dispatch(AddToCart(product,newqty))
 }
 
 const decreaseqty = (product,qty)=>{
 
   const newqty = qty - 1
-  
-  dispatch(DecreaseQty(product,newqty))
+  if (1 >= qty) {
+    return;
+  }
+  dispatch(AddToCart(product,newqty))
 }
 
 let vale = 0
@@ -74,7 +71,7 @@ cart.map((el,index)=>{
 
   <span
   onClick={()=>{
-    decreaseqty(el,el.qty)
+    decreaseqty(el.product,el.qty)
   }}
    className="w-7 h-7 text-3xl font-light bg-gray-50 rounded-full border flex items-center justify-center cursor-pointer">
     <p>-</p>
@@ -85,13 +82,13 @@ cart.map((el,index)=>{
     disabled
   />
   <span onClick={()=>{
-    increaseqty(el,el.qty)
+    increaseqty(el.product,el.qty)
   }} className="w-7 h-7 text-xl font-light bg-gray-50 rounded-full border flex items-center justify-center cursor-pointer">
     +
   </span>
 <button onClick={()=>{
 
-  dispatch(RemovePro(el))
+  dispatch(RemovePro(el.product))
 }} className="border px-4 py-2 rounded font-medium">
   Remove
 </button>

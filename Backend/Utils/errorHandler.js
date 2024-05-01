@@ -1,8 +1,7 @@
 class ErrorHandler extends Error {
     constructor(message,statusCode){
-        super(statusCode)
-        
-        this.message = message
+        super(message)
+        this.statusCode = statusCode
     }
     
     

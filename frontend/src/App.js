@@ -1,5 +1,7 @@
 import './App.css';
 import AddProducts from './components/AddProducts/AddProducts';
+import Login from './components/Auth/Login';
+import Register from './components/Auth/Register';
 import Cart from './components/Cart/Cart';
 import Category from './components/Category/Category';
 import Home from './components/Home/Home';
@@ -16,6 +18,9 @@ function App() {
          <Route path='/category' element={<Category/>}/>
          <Route path='/cart' element={<Cart/>}/>
          <Route path='/addproduct' element={<AddProducts/>}/>
+         <Route path='/register' element={<Register/>}/>
+         <Route path='/login' element={<Login/>}/>
+
        </Routes>
     </BrowserRouter>
    </>

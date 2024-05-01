@@ -5,7 +5,7 @@ const Category = () => {
   const product = [
     {
       id: "dsjbfdjksfgbi",
-      img: "https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/455359/item/goods_75_455359.jpg?width=750",
+      img: "https://levi.in/cdn/shop/files/329080243_01_Style_Shot_24d15e34-407b-42ba-9cea-c2531cc737df.jpg?v=1695736392",
       name: "T-Shirt",
       price: 1490,
       description: "Smooth 'AIRism' with the look of cotton.",

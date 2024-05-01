@@ -16,7 +16,7 @@ const {getAll} = useSelector((state)=>state.products)
 
   const Addproduct = (productID) => {
 
-    dispatch(AddToCart(productID));
+    dispatch(AddToCart(productID,1));
   };
 
 useEffect(()=>{
@@ -47,7 +47,7 @@ useEffect(()=>{
                 className=" bg-zinc-600 text-white p-2 rounded font-bold "
                 onClick={() => {
                  
-                  Addproduct(el);
+                  Addproduct(el._id);
                   notify();
                 }}
               >

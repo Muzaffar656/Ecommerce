@@ -30,34 +30,39 @@ dispatch({
 })
 }
 
-export const AddToCart = (product,qty=1)=>{
-   return{
+export const AddToCart = (product,qty)=> async (dispatch,getState) =>{
+const url = `http://localhost:8000/api/v1/product/${product}`;
+
+   const {data} = await axios.get(url)
+
+   dispatch({
     type:ActionTypes.ADD_TO_CART,
     payload:{
-         id:product._id,
-         name:product.name,
-         description:product.description, 
-         price:product.price,
-         img:product.image.url,
+         product:data.product._id,
+         name:data.product.name,
+         description:data.product.description, 
+         price:data.product.price,
+         img:data.product.image.url,
          qty
           }
-   }
+   })
+
 }
  
-export const DecreaseQty = (product,qty=1)=>{
+// export const DecreaseQty = (product,qty=1)=>{
 
-   return {
-      type:ActionTypes.DECREMENT,
-      payload:{
-         id:product.id,
-         name:product.name,
-         description:product.description,
-         price:product.price,
-         img:product.img,
-         qty
-      }
-   }
-}
+//    return {
+//       type:ActionTypes.DECREMENT,
+//       payload:{
+//          id:product.id,
+//          name:product.name,
+//          description:product.description,
+//          price:product.price,
+//          img:product.img,
+//          qty
+//       }
+//    }
+// }
 
 export const IncreaseQty = (product,qty=1)=>{
    return {
@@ -73,16 +78,12 @@ export const IncreaseQty = (product,qty=1)=>{
    }
 }
 
-export const RemovePro = (product)=>{
-
-   return{
+export const RemovePro = (product)=>async dispatch =>{
+console.log(product)
+   dispatch({
       type:ActionTypes.REMOVE_PRODUCT,
       payload:{
-         id:product.id,
-         name:product.name,
-         description:product.description,
-         price:product.price,
-         img:product.img,
+        product
       }
-   }
+   })
 }
